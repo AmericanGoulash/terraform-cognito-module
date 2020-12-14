@@ -54,7 +54,7 @@ resource "aws_cognito_user_pool_client" "client" {
     "profile"
   ]
   supported_identity_providers = [
-    "Google",
+    aws_cognito_identity_provider.google.name
     "COGNITO"
   ]
 }
