@@ -3,7 +3,7 @@ resource "aws_cognito_identity_provider" "facebook_provider_production" {
   provider_name = "Facebook"
   provider_type = "Facebook"
 
-  provider_details {
+  provider_details = {
     authorize_scopes              = "email"
     client_id                     = var.facebook_app_id
     client_secret                 = var.facebook_app_secret
