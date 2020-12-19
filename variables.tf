@@ -46,14 +46,18 @@ variable "cognito_verification_message_template" {
   default = {}
 }
 
-variable cognito_default_email_option {
+variable "cognito_default_email_option" {
   default = "CONFIRM_WITH_LINK"
 }
 
-variable cognito_email_subject_by_link {
+variable "cognito_email_subject_by_link" {
   default = "Please Confirm Your Email Address."
 }
 
-variable cognito_email_message_by_link {
+variable "cognito_email_message_by_link" {
   default = "To confirm your email address please {##Click Here##}."
+}
+
+variable "should_create_root_domain_A_record" {
+  type = bool
 }

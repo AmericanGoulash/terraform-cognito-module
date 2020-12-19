@@ -6,7 +6,7 @@ resource "aws_cognito_user_pool_domain" "domain" {
   lifecycle {
     create_before_destroy = false
   }
-  
+
   depends_on = [
     aws_route53_record.root_domain_A_record
   ]
@@ -25,14 +25,6 @@ resource "aws_route53_record" "cognito_domain_ipv4_record" {
   }
 }
 
-resource "aws_route53_record" "root_domain_A_record" {
-  zone_id = var.route53_zone_id
-  name    = var.top_private_domain
-  type    = "A"
-  ttl     = 300
-  records = ["127.0.0.1"]  # Placeholder that is never used
-}
-
 resource "aws_route53_record" "cognito_domain_ipv6_record" {
   name    = aws_cognito_user_pool_domain.domain.domain
   zone_id = var.route53_zone_id
@@ -48,4 +40,13 @@ resource "aws_route53_record" "cognito_domain_ipv6_record" {
   lifecycle {
     create_before_destroy = false
   }
+}
+
+resource "aws_route53_record" "root_domain_A_record" {
+  count   = var.should_create_root_domain_A_record ? 1 : 0
+  zone_id = var.route53_zone_id
+  name    = var.top_private_domain
+  type    = "A"
+  ttl     = 300
+  records = ["127.0.0.1"] # Placeholder that is never used
 }
