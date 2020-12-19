@@ -14,7 +14,7 @@ resource "aws_cognito_identity_provider" "facebook_provider_production" {
     token_url                     = "https://graph.facebook.com/v2.9/oauth/access_token"
   }
 
-  attribute_mapping {
+  attribute_mapping = {
     email    = "email"
     name     = "name"
     username = "id"
