@@ -11,4 +11,19 @@ locals {
     CreatedBy = "terraform"
     Component = "cognito"
   }
+
+  cognito_idp_scopes = [
+    "aws.cognito.signin.user.admin"
+  ]
+
+  google_idp_scopes = [
+    "profile",
+    "email",
+    "openid"
+  ]
+
+  facebook_idp_scopes = [
+    "public_profile",
+    "email"
+  ]
 }

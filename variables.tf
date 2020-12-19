@@ -35,10 +35,36 @@ variable "route53_zone_id" {
 
 variable "google_client_id" {
   description = "google CLIENT_ID needed to create social-login with google."
+  default     = ""
 }
 
 variable "google_client_secret" {
   description = "google CLIENT_SECRET needed to create social-login with google."
+  default     = ""
+  sensitive   = true
+}
+
+variable "facebook_app_id" {
+  description = "facebook app id needed to create social-login with facebook."
+  default     = ""
+}
+
+variable "facebook_app_secret" {
+  description = "facebook app secret needed to create social-login with facebook."
+  default     = ""
+  sensitive   = true
+}
+
+variable "enable_facebook_idp" {
+  description = "Set it to true if you want to enable login with facebook identity provider."
+  type        = bool
+  default     = false
+}
+
+variable "enable_google_idp" {
+  description = "Set it to true if you want to enable login with google identity provider."
+  type        = bool
+  default     = false
 }
 
 variable "cognito_verification_message_template" {

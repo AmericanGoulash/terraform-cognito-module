@@ -47,12 +47,8 @@ resource "aws_cognito_user_pool_client" "client" {
     "implicit"
   ]
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_scopes = [
-    "email",
-    "openid",
-    "aws.cognito.signin.user.admin",
-    "profile"
-  ]
+  allowed_oauth_scopes = merge(local.cognito_idp_scopes, local.google_idp_scopes, local.facebook_idp_scopes)
+
   supported_identity_providers = [
     aws_cognito_identity_provider.google.provider_name,
     "COGNITO"
