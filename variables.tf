@@ -55,6 +55,12 @@ variable "facebook_app_secret" {
   sensitive   = true
 }
 
+variable "facebook_api_version" {
+  description = "which facebook api version to use"
+  default     = "9.0"
+  type = string
+}
+
 variable "enable_facebook_idp" {
   description = "Set it to true if you want to enable login with facebook identity provider."
   type        = bool
