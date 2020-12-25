@@ -23,8 +23,6 @@ locals {
   ]
 
   facebook_idp_scopes = [
-    "email",
-    "name",
-    "openid"
+    "email"
   ]
 }
