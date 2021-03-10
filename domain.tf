@@ -23,6 +23,10 @@ resource "aws_route53_record" "cognito_domain_ipv4_record" {
     zone_id                = local.cloudfront_hosted_zone_id
     evaluate_target_health = false
   }
+
+  lifecycle {
+    create_before_destroy = false
+  }
 }
 
 resource "aws_route53_record" "cognito_domain_ipv6_record" {
@@ -49,4 +53,8 @@ resource "aws_route53_record" "root_domain_A_record" {
   type    = "A"
   ttl     = 300
   records = ["127.0.0.1"] # Placeholder that is never used
+
+  lifecycle {
+    create_before_destroy = false
+  }
 }

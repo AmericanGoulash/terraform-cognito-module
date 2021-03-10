@@ -16,6 +16,12 @@ locals {
     "aws.cognito.signin.user.admin"
   ]
 
+  oath_idp_scopes = [
+    "profile",
+    "email",
+    "openid"
+  ]
+
   google_idp_scopes = [
     "profile",
     "email",
@@ -23,6 +29,7 @@ locals {
   ]
 
   facebook_idp_scopes = [
-    "email"
+    "email",
+    "public_profile"
   ]
 }

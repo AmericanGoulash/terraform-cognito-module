@@ -57,7 +57,7 @@ variable "facebook_app_secret" {
 
 variable "facebook_api_version" {
   description = "which facebook api version to use. currently cognito supports 6.0"
-  default     = "6.0"
+  default     = "v6.0"
   type        = string
 }
 

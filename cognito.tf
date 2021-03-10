@@ -1,6 +1,6 @@
 resource "aws_cognito_user_pool" "pool" {
   name                = var.user_pool_name
-  username_attributes = ["email"]
+  username_attributes = ["email", "phone_number"]
   username_configuration {
     case_sensitive = false
   }
@@ -44,13 +44,16 @@ resource "aws_cognito_user_pool_client" "client" {
     local.logout_callback_url
   ]
   allowed_oauth_flows = [
-    "implicit"
+    "implicit",
+    "code"
   ]
-  allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_scopes = concat(local.cognito_idp_scopes, local.google_idp_scopes, local.facebook_idp_scopes)
 
-  supported_identity_providers = [
-    aws_cognito_identity_provider.google.provider_name,
+  allowed_oauth_flows_user_pool_client = true
+  allowed_oauth_scopes = concat(local.cognito_idp_scopes, local.oath_idp_scopes)
+
+  supported_identity_providers = tolist([
+    var.enable_google_idp ? aws_cognito_identity_provider.google.provider_name : "COGNITO",
+    var.enable_facebook_idp ? aws_cognito_identity_provider.facebook_provider.provider_name : "COGNITO",
     "COGNITO"
-  ]
+  ])
 }
