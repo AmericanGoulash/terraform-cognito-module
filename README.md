@@ -1,4 +1,4 @@
-# terraform-ui-module
+# terraform-cognito-module
 
 This is a terraform module to create authentication with aws cognito supporting the following features:
 
