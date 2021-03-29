@@ -1,4 +1,5 @@
 resource "aws_cognito_identity_provider" "facebook_provider" {
+  count         = var.enable_facebook_idp ? 1 : 0
   user_pool_id  = aws_cognito_user_pool.pool.id
   provider_name = "Facebook"
   provider_type = "Facebook"
@@ -12,8 +13,8 @@ resource "aws_cognito_identity_provider" "facebook_provider" {
   }
 
   attribute_mapping = {
-    email    = "email"
-    profile  = "public_profile"
+    email   = "email"
+    profile = "public_profile"
   }
 
   lifecycle {

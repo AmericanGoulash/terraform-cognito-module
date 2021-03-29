@@ -49,7 +49,7 @@ resource "aws_cognito_user_pool_client" "client" {
   ]
 
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_scopes = concat(local.cognito_idp_scopes, local.oath_idp_scopes)
+  allowed_oauth_scopes                 = concat(local.cognito_idp_scopes, local.oath_idp_scopes)
 
   supported_identity_providers = tolist([
     var.enable_google_idp ? aws_cognito_identity_provider.google.provider_name : "COGNITO",
