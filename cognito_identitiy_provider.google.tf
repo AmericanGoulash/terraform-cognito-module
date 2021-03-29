@@ -1,4 +1,5 @@
 resource "aws_cognito_identity_provider" "google" {
+  count         = var.enable_google_idp ? 1 : 0
   user_pool_id  = aws_cognito_user_pool.pool.id
   provider_name = "Google"
   provider_type = "Google"
