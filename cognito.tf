@@ -51,8 +51,8 @@ resource "aws_cognito_user_pool_client" "client" {
   allowed_oauth_scopes                 = concat(local.cognito_idp_scopes, local.oath_idp_scopes)
 
   supported_identity_providers = tolist([
-    var.enable_google_idp ? aws_cognito_identity_provider.google[count.index].provider_name : "COGNITO",
-    var.enable_facebook_idp ? aws_cognito_identity_provider.facebook_provider[count.index].provider_name : "COGNITO",
+    var.enable_google_idp ? aws_cognito_identity_provider.google.provider_name : "COGNITO",
+    var.enable_facebook_idp ? aws_cognito_identity_provider.facebook_provider.provider_name : "COGNITO",
     "COGNITO"
   ])
 }
